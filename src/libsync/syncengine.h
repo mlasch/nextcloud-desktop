@@ -428,4 +428,3 @@ private:
     QList<SyncFileItemPtr> _remnantReadOnlyFolders;
 };
 }
-
