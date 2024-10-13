@@ -380,10 +380,10 @@ private:
     // true if there is at least one file which was not changed on the server
     bool _hasNoneFiles = false;
 
-    // true if there is at leasr one file with instruction REMOVE
+    // true if there is at least one file with instruction REMOVE
     bool _hasRemoveFile = false;
 
-    // If ignored files should be ignored
+    // If hidden files should be ignored
     bool _ignore_hidden_files = false;
 
     // If version controlled workspaces should be ignored
