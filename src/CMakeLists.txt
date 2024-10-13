@@ -1,6 +1,6 @@
 include(ECMEnableSanitizers)
 
-set(REQUIRED_QT_VERSION "6.5.0")
+set(REQUIRED_QT_VERSION "6.2.4")
 
 find_package(Qt${QT_MAJOR_VERSION}Core ${REQUIRED_QT_VERSION} CONFIG QUIET)
 set_package_properties(Qt${QT_MAJOR_VERSION}Core PROPERTIES
@@ -38,7 +38,7 @@ find_package(Qt${QT_VERSION_MAJOR}Core5Compat ${REQUIRED_QT_VERSION} CONFIG QUIE
      TYPE REQUIRED
  )
 
-get_target_property (QT_QMAKE_EXECUTABLE Qt::qmake IMPORTED_LOCATION)
+get_target_property (QT_QMAKE_EXECUTABLE Qt6::qmake IMPORTED_LOCATION)
 message(STATUS "Using Qt ${Qt${QT_MAJOR_VERSION}Core_VERSION} (${QT_QMAKE_EXECUTABLE})")
 
 if(NOT TOKEN_AUTH_ONLY)

@@ -26,6 +26,7 @@ endmacro(libcloudproviders_add_config _sources)
 
 
 if (Qt6_FOUND)
+    set(QT_NO_CREATE_VERSIONLESS_TARGETS TRUE)
     find_package(Qt6 COMPONENTS COMPONENTS DBus)
 else()
     set(REQUIRED_QT_VERSION "5.15.0")
