@@ -36,6 +36,7 @@
 #include <QTextCodec>
 #include <cstring>
 #include <QDateTime>
+#include <QDir>
 
 
 namespace OCC {
@@ -349,6 +350,14 @@ void DiscoverySingleLocalDirectoryJob::run() {
         i.isVirtualFile = dirent->type == ItemTypeVirtualFile || dirent->type == ItemTypeVirtualFileDownload;
         i.isMetadataMissing = dirent->is_metadata_missing;
         i.type = dirent->type;
+
+        QString gitPath = localPath + QLatin1String("/.git");
+        QDir pathDir(gitPath);
+        if (pathDir.exists()) {
+            qCDebug(lcDiscovery) << "Item is under version control";
+            i.isVCS = true;
+        }
+
         results.push_back(i);
     }
     if (errno != 0) {

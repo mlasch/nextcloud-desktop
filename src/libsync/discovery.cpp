@@ -298,6 +298,11 @@ bool ProcessDirectoryJob::handleExcluded(const QString &path, const Entries &ent
         excluded = CSYNC_FILE_EXCLUDE_HIDDEN;
     }
 
+    if (excluded == CSYNC_NOT_EXCLUDED && _discoveryData->_ignoreVCSWorkspaces && entries.localEntry.isVCS) {
+        excluded = CSYNC_FILE_EXCLUDE_VERSION_CONTROL;
+        qCDebug(lcDisco) << "Item is under version control " << qPrintable(path);
+    }
+
     const auto &localName = entries.localEntry.name;
     const auto splitName = localName.split('.');
     const auto &baseName = splitName.first();
@@ -420,6 +425,9 @@ bool ProcessDirectoryJob::handleExcluded(const QString &path, const Entries &ent
             break;
         case CSYNC_FILE_EXCLUDE_HIDDEN:
             item->_errorString = tr("File/Folder is ignored because it's hidden.");
+            break;
+        case CSYNC_FILE_EXCLUDE_VERSION_CONTROL:
+            item->_errorString = tr("File/Folder is ignored because it is a VCS workspace.");
             break;
         case CSYNC_FILE_EXCLUDE_STAT_FAILED:
             item->_errorString = tr("Stat failed.");

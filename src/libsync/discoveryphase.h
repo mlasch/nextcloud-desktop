@@ -100,6 +100,7 @@ struct LocalInfo
     ItemType type = ItemTypeSkip;
     bool isDirectory = false;
     bool isHidden = false;
+    bool isVCS = false;
     bool isVirtualFile = false;
     bool isSymLink = false;
     bool isMetadataMissing = false;
@@ -319,6 +320,7 @@ public:
     QStringList _serverBlacklistedFiles; // The blacklist from the capabilities
     QStringList _leadingAndTrailingSpacesFilesAllowed;
     bool _ignoreHiddenFiles = false;
+    bool _ignoreVCSWorkspaces = false;
     std::function<bool(const QString &)> _shouldDiscoverLocaly;
 
     void startJob(ProcessDirectoryJob *);

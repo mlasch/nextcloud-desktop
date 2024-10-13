@@ -77,6 +77,7 @@ public:
 
     [[nodiscard]] SyncOptions syncOptions() const { return _syncOptions; }
     [[nodiscard]] bool ignoreHiddenFiles() const { return _ignore_hidden_files; }
+    [[nodiscard]] bool ignoreVCSWorkspaces() const { return _ignore_hidden_files; }
 
     [[nodiscard]] ProgressInfo *progressInfo() const
     {
@@ -385,6 +386,8 @@ private:
     // If ignored files should be ignored
     bool _ignore_hidden_files = false;
 
+    // If version controlled workspaces should be ignored
+    bool _ignore_vsc_workspaces = true;
 
     int _uploadLimit = 0;
     int _downloadLimit = 0;
